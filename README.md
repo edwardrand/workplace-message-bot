@@ -53,4 +53,4 @@ It should be noted that since I created this bot the graph API has changed a lot
 
 Please also be aware that this version of Sequelize has a [SQL injection vulnerability](https://www.npmjs.com/advisories/1018) affecting MariaDB and MySQL. I'd have to bump the package through two major releases to fix this, and I don't have time at the moment to test the impact this would have. We use PostGreSQL, so aren't impacted by this vulnerability, so I've left it "as is" for now, but will look to update it later. PRs to fix this are welcome.
 
-# [WeAreCoolr.com](https://www.wearecoolr.com)
+
