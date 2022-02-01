@@ -1,0 +1,88 @@
+<html>
+
+<head>
+  <title>Out of Office Settings</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/css/bootstrap-material-design.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/css/ripples.min.css" />
+
+  <script>
+    (function (d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {
+        return;
+      }
+      js = d.createElement(s);
+      js.id = id;
+      js.src = "//connect.facebook.net/en_US/messenger.Extensions.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'Messenger'));
+
+
+    function closeWindow() {
+      MessengerExtensions.requestCloseBrowser(function success() {
+
+      }, function error(err) {});
+    }
+  </script>
+  <script type="text/javascript" src="https://momentjs.com/downloads/moment-with-locales.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script>window.jQuery || document.write('<script src="./js/jquery-3.3.1.js"><\/script>')</script>
+  <script src="./js/zebra_datepicker.min.js"></script>
+  <link rel="stylesheet" href="./css/zebra_datepicker.min.css">
+</head>
+
+<body>
+  <div class="container well">
+    <div class="row">
+      <form action="/updateOOO/" method="post" onsubmit="return closeWindow()">
+        <input type="hidden" name="Name" value="<%= Name%>">
+        <input type="hidden" name="FBUsername" value="<%= FBUsername%>">
+        <div class="col-md-12">
+          <div class="row">
+            <div class="form-group">
+              <textarea class="form-control" name="message" id="message" rows="6" required placeholder="Your Message"><%= message%></textarea>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="form-control-wrapper">
+              <input type="text" id="date-start" name="date-start" class="form-control floating-label" required
+                placeholder="Start Date" value="<%= startTime%>">
+
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="form-control-wrapper">
+              <input type="text" id="date-end" name="date-end" class="form-control floating-label" placeholder="End Date (Optional)"
+                value="<%= endTime%>">
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-buttons">
+              <button type="submit" class="btn btn-primary btn-raised">Submit</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('#date-start').Zebra_DatePicker({
+          direction: 1,
+          pair: $('#date-start'),
+          format: 'd-m-Y - H:i',
+          inside: true
+        });
+        $('#date-end').Zebra_DatePicker({
+          direction: 2,
+          format: 'd-m-Y - H:i'
+        });
+      });
+    </script>
+</body>
+
+</html>
